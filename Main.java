@@ -18,23 +18,42 @@ import java.util.Scanner;
    int hotdogsOrdered = (int)(Math.random()*2);
    int hamburgersOrdered = (int)(Math.random()*2);
     */
-   int drinksOrdered = input.nextLine("Num of Drinks:");
-   int candiesOrdered = input.nextLine("Num of Candy:");
-   int hotdogsOrdered = input.nextLine("Num of Hot Dogs:");
-   int hamburgersOrdered = input.nextLine("Num of Burgers:");
-   String highSchoolName = input.nextLine("Highschool Name:");
-   int position = highSchoolName.indexOf(" ");
-   
-   String initials = highSchoolName.substring(0,1);
+   System.out.println("Drinks:");
+   int drinksOrdered = input.nextInt();
+   System.out.println("Candies:");
+   int candiesOrdered = input.nextInt();
+   System.out.println("HDs:");
+   int hotdogsOrdered = input.nextInt();
+   System.out.println("Burgers:");
+   int hamburgersOrdered = input.nextInt();
+   input.nextLine();
+   System.out.println("HighSchoolName:");
+   String highSchoolName = input.nextLine();
+
    double taxrate = 0.09;
    double subTotal = drinksOrdered * drinkPrice + candyPrice * candiesOrdered + hotdogPrice * hotdogsOrdered + hamburgerPrice * hamburgersOrdered;
    double totalTax = subTotal * taxrate;
    double total = subTotal + totalTax; 
-     // RECEIPT PRINTOUT SECTION
+   int spaceCount = 0;
+   int position = highSchoolName.indexOf(" ");
+   String remainWords = highSchoolName.substring(position+1);
+   String initials = highSchoolName.substring(0,1);
+   for(int i = 0; i < highSchoolName.length(); i++){
+    if (highSchoolName.substring(i, i+1).equals(" ")){
+      spaceCount +=1;
+    }
+   }
+   for(int i = 0; i< spaceCount; i++){
+    initials = initials + remainWords.substring(0,1);
+    position = remainWords.indexOf(" ");
+    remainWords = remainWords.substring(position + 1);
+
+   }
+    // RECEIPT PRINTOUT SECTION
      System.out.println("**************************************");
      System.out.println("*                                    *"); 
      System.out.println("Order Number "+ orderNumber +"                     ");
-     System.out.println("     "+highSchoolName+" Snack Bar"+"   ");
+     System.out.println("     "+initials+" Snack Bar"+"   ");
      System.out.println("                                    ");
      System.out.println("     "+snack1+"*"+drinksOrdered+ " ..........$"+drinkPrice*drinksOrdered+"");                      
      System.out.println("     "+snack2+"*"+candiesOrdered+" ..........$"+candyPrice*candiesOrdered+"");     
